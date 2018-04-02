@@ -17,6 +17,13 @@ namespace TheAionProject
         // list of all space-time locations
         //
         private List<SpaceTimeLocation> _spaceTimeLocations;
+        private List<GameObject> _gameObjects;
+
+        public List<GameObject> GameObjects
+        {
+            get { return _gameObjects; }
+            set { _gameObjects = value; }
+        }
 
         public List<SpaceTimeLocation> SpaceTimeLocations
         {
@@ -49,6 +56,7 @@ namespace TheAionProject
         private void IntializeUniverse()
         {
             _spaceTimeLocations = UniverseObjects.SpaceTimeLocations;
+            _gameObjects = UniverseObjects.gameObjects;
         }
 
         #endregion
@@ -149,6 +157,34 @@ namespace TheAionProject
             }
 
             return spaceTimeLocation;
+        }
+
+        public bool isValidGameObjectByLocationId(int gameObjectId, int currentSpaceTimeLocation)
+        {
+            List<int> gameObjectIds = new List<int>();
+
+            //
+            // create a list of game object ids in current space-time location
+            //
+            foreach (GameObject gameObject in _gameObjects)
+            {
+                if (gameObject.SpaceTimeLocationId == currentSpaceTimeLocation)
+                {
+                    gameObjectIds.Add(gameObject.Id);
+                }
+            }
+
+            //
+            // determine if the game object id is a valid id and return the result
+            //
+            if (gameObjectIds.Contains(gameObjectId))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         #endregion

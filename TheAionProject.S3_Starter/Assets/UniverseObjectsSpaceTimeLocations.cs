@@ -9,11 +9,10 @@ namespace TheAionProject
     /// <summary>
     /// static class to hold all objects in the game universe; locations, game objects, npc's
     /// </summary>
-    public static class UniverseObjects
+    public static partial class UniverseObjects
     {
         public static List<SpaceTimeLocation> SpaceTimeLocations = new List<SpaceTimeLocation>()
         {
-
             new SpaceTimeLocation
             {
                 CommonName = "Aion Base Lab",
