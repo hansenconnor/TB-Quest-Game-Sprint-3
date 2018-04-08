@@ -187,6 +187,33 @@ namespace TheAionProject
             }
         }
 
+        public GameObject GetGameObjectById(int Id)
+        {
+            GameObject gameObjectToReturn = null;
+
+            //
+            // run through the game objects list and grab the correct one
+            //
+            foreach (GameObject gameObject in _gameObjects)
+            {
+                if (gameObject.Id ==Id)
+                {
+                    gameObjectToReturn = gameObject;
+                }
+            }
+
+            //
+            // the specified ID was not found in the universe
+            // throw exception
+            if (gameObjectToReturn == null)
+            {
+                string feedbackMessage = $"The Game Object ID {Id} does not exist in the current Universe.";
+                throw new ArgumentException(feedbackMessage, Id.ToString());
+            }
+
+            return gameObjectToReturn;
+        }
+
         #endregion
     }
 }
