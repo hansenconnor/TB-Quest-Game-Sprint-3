@@ -12,7 +12,7 @@ namespace TheAionProject
     public static class Text
     {
         public static List<string> HeaderText = new List<string>() { "The Aion Project" };
-        public static List<string> FooterText = new List<string>() { "Laughing Leaf Productions, 2016" };
+        public static List<string> FooterText = new List<string>() { "Connor Hansen, 2018" };
 
         #region INTITIAL GAME SETUP
 
@@ -269,6 +269,43 @@ namespace TheAionProject
             statusBoxText.Add($"Lives: {traveler.Lives}\n");
 
             return statusBoxText;
+        }
+
+        public static string ListAllGameObjects(IEnumerable<GameObject> gameObjects)
+        {
+            //
+            // display table name and column headers
+            //
+            string messageBoxText =
+                "Game Objects\n" +
+                " \n" +
+
+                //
+                // display table header
+                //
+                "ID".PadRight(10) +
+                "Name".PadRight(30) +
+                "Space-Time Location Id".PadRight(10) + " \n" +
+                "---".PadRight(10) +
+                "----------------------".PadRight(30) +
+                "----------------------".PadRight(10) + "\n";
+
+            //
+            // display all traveler objects in rows
+            //
+            string gameObjectRows = null;
+            foreach (GameObject gameObject in gameObjects)
+            {
+                gameObjectRows +=
+                    $"{gameObject.Id}".PadRight(10) +
+                    $"{gameObject.Name}".PadRight(30) +
+                    $"{gameObject.SpaceTimeLocationId}".PadRight(10) +
+                    Environment.NewLine;
+            }
+
+            messageBoxText += gameObjectRows;
+
+            return messageBoxText;
         }
     }
 }

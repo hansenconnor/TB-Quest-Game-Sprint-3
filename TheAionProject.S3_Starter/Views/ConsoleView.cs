@@ -526,6 +526,11 @@ namespace TheAionProject
             return traveler;
         }
 
+        public void DisplayListOfAllGameObjects()
+        {
+            DisplayGamePlayScreen("List: Game Objects", Text.ListAllGameObjects(_gameUniverse.GameObjects), ActionMenu.MainMenu,"");
+        }
+
         #region ----- display responses to menu action choices -----
 
         public void DisplayTravelerInfo()

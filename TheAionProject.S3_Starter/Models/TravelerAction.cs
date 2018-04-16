@@ -27,6 +27,7 @@ namespace TheAionProject
         ListSpaceTimeLocations,
         ListItems,
         ListTreasures,
+        ListGameObjects,
         Exit
     }
 }
