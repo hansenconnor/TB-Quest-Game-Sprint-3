@@ -151,6 +151,10 @@ namespace TheAionProject
                         _gameConsoleView.DisplayListOfAllGameObjects();
                         break;
 
+                    case TravelerAction.LookAt:
+                        LookAtAction();
+                        break;
+
                     case TravelerAction.Exit:
                         _playingGame = false;
                         break;
@@ -196,6 +200,33 @@ namespace TheAionProject
                 // update experience points for visiting locations
                 //
                 _gameTraveler.ExperiencePoints += _currentLocation.ExperiencePoints;
+            }
+        }
+
+        /// <summary>
+        /// process the Look At action
+        /// </summary>
+        private void LookAtAction()
+        {
+            //
+            // display a list of game objects in space-time location and get a player choice
+            //
+            int gameObjectToLookAtId = _gameConsoleView.DisplayGetGameObjectToLookAt();
+
+            //
+            // display game object info
+            //
+            if (gameObjectToLookAtId != 0)
+            {
+                //
+                // get the game object from the universe
+                //
+                GameObject gameObject = _gameUniverse.GetGameObjectById(gameObjectToLookAtId);
+
+                //
+                // display information for the object chosen
+                //
+                _gameConsoleView.DisplayGameObjectInfo(gameObject);
             }
         }
 

@@ -620,6 +620,54 @@ namespace TheAionProject
             DisplayGamePlayScreen("List: Space-Time Locations", Text.ListAllSpaceTimeLocations(_gameUniverse.SpaceTimeLocations), ActionMenu.MainMenu, "");
         }
 
+        public int DisplayGetGameObjectToLookAt()
+        {
+            int gameObjectId = 0;
+            bool validGameObjectId = false;
+            
+            //
+            // get a list of all objects in the current space time location
+            //
+            List<GameObject> gameObjectsInSpaceTimeLocation = _gameUniverse.GetGameObjectBySpaceTimeLocationId(_gameTraveler.SpaceTimeLocationID);
+
+            if (gameObjectsInSpaceTimeLocation.Count > 0)
+            {
+                DisplayGamePlayScreen("Look at an Object", Text.GameObjectsChooseList(gameObjectsInSpaceTimeLocation), ActionMenu.MainMenu, "");
+
+                while (!validGameObjectId)
+                {
+                    //
+                    // get integer from player
+                    //
+                    GetInteger($"Enter the Id number of the object you wish to look at: ", 0, 0, out gameObjectId);
+
+                    //
+                    // validate integer as a valid game object id and in current location
+                    //
+                    if (_gameUniverse.isValidGameObjectByLocationId(gameObjectId, _gameTraveler.SpaceTimeLocationID))
+                    {
+                        validGameObjectId = true;
+                    }
+                    else
+                    {
+                        ClearInputBox();
+                        DisplayInputErrorMessage("It appears that you entered an invalid game object id. Please try again.");
+                    }
+                }
+            }
+            else
+            {
+                DisplayGamePlayScreen("Look at an Object","It appears there are no game objects here.", ActionMenu.MainMenu, "");
+            }
+
+            return gameObjectId;
+        }
+
+        public void DisplayGameObjectInfo(GameObject gameObject)
+        {
+            DisplayGamePlayScreen("Current Location", Text.LookAt(gameObject), ActionMenu.MainMenu, "");
+        }
+
         #endregion
 
         #endregion

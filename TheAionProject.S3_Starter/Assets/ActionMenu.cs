@@ -39,10 +39,11 @@ namespace TheAionProject
                 {
                     { '1', TravelerAction.TravelerInfo },
                     { '2', TravelerAction.LookAround },
-                    { '3', TravelerAction.Travel },
-                    { '4', TravelerAction.TravelerLocationsVisited },
-                    { '5', TravelerAction.ListSpaceTimeLocations },
-                    { '6', TravelerAction.ListGameObjects },
+                    { '3', TravelerAction.LookAt },
+                    { '4', TravelerAction.Travel },
+                    { '5', TravelerAction.TravelerLocationsVisited },
+                    { '6', TravelerAction.ListSpaceTimeLocations },
+                    { '7', TravelerAction.ListGameObjects },
                     { '0', TravelerAction.Exit }
                 }
         };

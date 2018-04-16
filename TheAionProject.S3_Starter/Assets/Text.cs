@@ -341,5 +341,38 @@ namespace TheAionProject
 
             return messageBoxText;
         }
+
+        public static string LookAt(GameObject gameObject)
+        {
+            string messageBoxText = "";
+
+            messageBoxText =
+                $"{gameObject.Name}\n" +
+                " \n" +
+                gameObject.Description + " \n" +
+                " \n";
+
+            if (gameObject is TravelerObject)
+            {
+                TravelerObject travelerObject = gameObject as TravelerObject;
+
+                messageBoxText += $"The {travelerObject.Name} has a value of {travelerObject.Value} and ";
+
+                if (travelerObject.CanInventory)
+                {
+                    messageBoxText += "may be added to your inventory.";
+                }
+                else
+                {
+                    messageBoxText += "may not be added to your inventory.";
+                }
+            }
+            else
+            {
+                messageBoxText += $"The {gameObject.Name} may not be added to your inventory.";
+            }
+
+            return messageBoxText;
+        }
     }
 }
