@@ -214,6 +214,25 @@ namespace TheAionProject
             return gameObjectToReturn;
         }
 
+        public List<GameObject> GetGameObjectBySpaceTimeLocationId(int spaceTimeLocationId)
+        {
+            List<GameObject> gameObjects = new List<GameObject>();
+
+            //
+            // run through the game object list and grab all that are in the current space
+            //
+            foreach (GameObject gameObject in _gameObjects)
+            {
+                if (gameObject.SpaceTimeLocationId == spaceTimeLocationId)
+                {
+                    gameObjects.Add(gameObject);
+                }
+            }
+
+            // reutrn list of game objects within the specified space-time location id
+            return gameObjects;
+        }
+
         #endregion
     }
 }

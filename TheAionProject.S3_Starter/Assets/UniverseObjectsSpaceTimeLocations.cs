@@ -10,7 +10,7 @@ namespace TheAionProject
     /// static class to hold all objects in the game universe; locations, game objects, npc's
     /// </summary>
     public static partial class UniverseObjects
-    {// test
+    { 
         public static List<SpaceTimeLocation> SpaceTimeLocations = new List<SpaceTimeLocation>()
         {
             new SpaceTimeLocation
