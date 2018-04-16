@@ -136,26 +136,38 @@ namespace TheAionProject
             bool validResponse = false;
             integerChoice = 0;
 
+            //
+            // validate on range if either minimumValue and maximumValue are not 0
+            //
+            bool validateRange = (minimumValue != 0 || maximumValue != 0);
+
             DisplayInputBoxPrompt(prompt);
             while (!validResponse)
             {
                 if (int.TryParse(Console.ReadLine(), out integerChoice))
                 {
-                    if (integerChoice >= minimumValue && integerChoice <= maximumValue)
+                    if (validateRange)
                     {
-                        validResponse = true;
+                        if (integerChoice >= minimumValue && integerChoice <= maximumValue)
+                        {
+                            validResponse = true;
+                        }
+                        else
+                        {
+                            ClearInputBox();
+                            DisplayInputErrorMessage($"You must enter an integer value between {minimumValue} and {maximumValue}. Please try again.");
+                            DisplayInputBoxPrompt(prompt);
+                        }
                     }
                     else
                     {
-                        ClearInputBox();
-                        DisplayInputErrorMessage($"You must enter an integer value between {minimumValue} and {maximumValue}. Please try again.");
-                        DisplayInputBoxPrompt(prompt);
+                        validResponse = true;
                     }
                 }
                 else
                 {
                     ClearInputBox();
-                    DisplayInputErrorMessage($"You must enter an integer value between {minimumValue} and {maximumValue}. Please try again.");
+                    DisplayInputErrorMessage($"You must enter an integer value. Please try again.");
                     DisplayInputBoxPrompt(prompt);
                 }
             }
