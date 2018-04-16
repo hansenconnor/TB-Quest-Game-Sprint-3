@@ -28,6 +28,8 @@ namespace TheAionProject
         ListItems,
         ListTreasures,
         ListGameObjects,
+        AdminMenu,
+        ReturnToMainMenu,
         Exit
     }
 }

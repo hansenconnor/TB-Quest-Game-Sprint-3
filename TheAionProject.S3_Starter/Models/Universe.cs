@@ -214,7 +214,7 @@ namespace TheAionProject
             return gameObjectToReturn;
         }
 
-        public List<GameObject> GetGameObjectBySpaceTimeLocationId(int spaceTimeLocationId)
+        public List<GameObject> GetGameObjectsBySpaceTimeLocationId(int spaceTimeLocationId)
         {
             List<GameObject> gameObjects = new List<GameObject>();
 

@@ -540,7 +540,7 @@ namespace TheAionProject
 
         public void DisplayListOfAllGameObjects()
         {
-            DisplayGamePlayScreen("List: Game Objects", Text.ListAllGameObjects(_gameUniverse.GameObjects), ActionMenu.MainMenu,"");
+            DisplayGamePlayScreen("List: Game Objects", Text.ListAllGameObjects(_gameUniverse.GameObjects), ActionMenu.AdminMenu,"");
         }
 
         #region ----- display responses to menu action choices -----
@@ -559,8 +559,20 @@ namespace TheAionProject
 
         public void DisplayLookAround()
         {
+            //
+            // get current space-time location
+            //
             SpaceTimeLocation currentSpaceTimeLocation = _gameUniverse.GetSpaceTimeLocationById(_gameTraveler.SpaceTimeLocationID);
-            DisplayGamePlayScreen("Current Location", Text.LookAround(currentSpaceTimeLocation), ActionMenu.MainMenu, "");
+
+            //
+            // get list of game objects in current space-time location
+            //
+            List<GameObject> gameObjectsInCurrentSpaceTimeLocation = _gameUniverse.GetGameObjectsBySpaceTimeLocationId(_gameTraveler.SpaceTimeLocationID);
+
+            string messageBoxText = Text.LookAround(currentSpaceTimeLocation) + Environment.NewLine + Environment.NewLine;
+            messageBoxText += Text.GameObjectsChooseList(gameObjectsInCurrentSpaceTimeLocation);
+
+            DisplayGamePlayScreen("Current Location", messageBoxText, ActionMenu.MainMenu, "");
         }
 
         public int DisplayGetNextSpaceTimeLocation()
@@ -617,7 +629,7 @@ namespace TheAionProject
 
         public void DisplayListOfSpaceTimeLocations()
         {
-            DisplayGamePlayScreen("List: Space-Time Locations", Text.ListAllSpaceTimeLocations(_gameUniverse.SpaceTimeLocations), ActionMenu.MainMenu, "");
+            DisplayGamePlayScreen("List: Space-Time Locations", Text.ListAllSpaceTimeLocations(_gameUniverse.SpaceTimeLocations), ActionMenu.AdminMenu, "");
         }
 
         public int DisplayGetGameObjectToLookAt()
@@ -628,7 +640,7 @@ namespace TheAionProject
             //
             // get a list of all objects in the current space time location
             //
-            List<GameObject> gameObjectsInSpaceTimeLocation = _gameUniverse.GetGameObjectBySpaceTimeLocationId(_gameTraveler.SpaceTimeLocationID);
+            List<GameObject> gameObjectsInSpaceTimeLocation = _gameUniverse.GetGameObjectsBySpaceTimeLocationId(_gameTraveler.SpaceTimeLocationID);
 
             if (gameObjectsInSpaceTimeLocation.Count > 0)
             {
