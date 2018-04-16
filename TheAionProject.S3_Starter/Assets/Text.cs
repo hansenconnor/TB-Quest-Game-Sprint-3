@@ -307,5 +307,39 @@ namespace TheAionProject
 
             return messageBoxText;
         }
+
+        public static string GameObjectsChooseList(IEnumerable<GameObject> gameObjects)
+        {
+            //
+            // display table name and column headers
+            //
+            string messageBoxText =
+                "Game Objects\n" +
+                " \n" +
+
+                //
+                // display table header
+                //
+                "ID".PadRight(10) +
+                "Name".PadRight(30) +
+                "---".PadRight(10) +
+                "----------------------".PadRight(30) + "\n";
+
+            //
+            // display all traveler objects in rows
+            //
+            string gameObjectRows = null;
+            foreach (GameObject gameObject in gameObjects)
+            {
+                gameObjectRows +=
+                    $"{gameObject.Id}".PadRight(10) +
+                    $"{gameObject.Name}".PadRight(30) +
+                    Environment.NewLine;
+            }
+
+            messageBoxText += gameObjectRows;
+
+            return messageBoxText;
+        }
     }
 }
